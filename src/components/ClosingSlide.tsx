@@ -36,11 +36,6 @@ export default function ClosingSlide({ slide }: Props) {
   return (
     <>
       <div ref={setRoot} dangerouslySetInnerHTML={{ __html: slide.html }} />
-      {/* DEBUG: render the button in a fixed spot so we can tell if React is
-          mounting this component at all. Remove once portal is confirmed. */}
-      <div style={{ position: 'fixed', bottom: 24, right: 24, zIndex: 9999 }}>
-        <ComposeButton onToggle={handleToggle} />
-      </div>
       {mountNode && createPortal(<ComposeButton onToggle={handleToggle} />, mountNode)}
     </>
   );
