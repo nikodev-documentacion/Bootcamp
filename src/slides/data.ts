@@ -850,7 +850,7 @@ $(<span class="tok-s">'#badge'</span>).toggleClass(
             </svg>
           </div>
           <div class="closing-quote">
-            <div id="compose-button-mount"></div>
+            <button id="compose-btn" class="compose-btn" type="button" aria-pressed="false">click</button>
           </div>
         </div>
       </div>
