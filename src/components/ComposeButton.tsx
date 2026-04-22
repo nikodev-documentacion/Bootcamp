@@ -57,7 +57,7 @@ export default function ComposeButton({ onToggle }: { onToggle?: (pressed: boole
       aria-pressed={isPressed}
       style={{ ...baseStyle, ...stateStyle }}
     >
-      Compone React
+      click
     </button>
   );
 }

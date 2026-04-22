@@ -850,21 +850,15 @@
   .ca-ring-2 { animation: atomRot 18s linear infinite reverse; }
   .ca-ring-3 { animation: atomRot 24s linear infinite; }
 
-  /* Assemble state — wins via higher specificity */
+  /* Assemble state — rings lock in place after entry (atom stays assembled) */
   .closing-atom.assemble .ca-ring-1 {
-    animation: ringIn 2.2s cubic-bezier(0.22,1,0.36,1) 0.2s both,
-               atomRot 12s linear 2.4s infinite !important;
+    animation: ringIn 2.2s cubic-bezier(0.22,1,0.36,1) 0.2s both !important;
   }
   .closing-atom.assemble .ca-ring-2 {
-    animation: ringIn 2.2s cubic-bezier(0.22,1,0.36,1) 0.8s both,
-               atomRot 18s linear 3.0s infinite reverse !important;
+    animation: ringIn 2.2s cubic-bezier(0.22,1,0.36,1) 0.8s both !important;
   }
   .closing-atom.assemble .ca-ring-3 {
-    animation: ringIn 2.2s cubic-bezier(0.22,1,0.36,1) 1.4s both,
-               atomRot 24s linear 3.6s infinite !important;
-  }
-  .closing-atom.assemble .ca-ring {
-    animation-name: ringIn, atomRot;
+    animation: ringIn 2.2s cubic-bezier(0.22,1,0.36,1) 1.4s both !important;
   }
   .closing-atom.assemble .ca-core {
     animation: coreBloom 1.4s cubic-bezier(0.22,1,0.36,1) 2.2s both,

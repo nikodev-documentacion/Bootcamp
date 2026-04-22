@@ -37,12 +37,20 @@ const STORAGE_KEY = 'react-curso-2026:current-slide';
 export default function Deck() {
   const total = SLIDE_COMPONENTS.length;
 
-  // Initial slide from localStorage
-  const [current, setCurrent] = useState<number>(() => {
-    if (typeof window === 'undefined') return 0;
-    const stored = Number(window.localStorage.getItem(STORAGE_KEY));
-    return Number.isFinite(stored) && stored >= 0 && stored < total ? stored : 0;
-  });
+  // Start at 0 on both server and client, then restore from localStorage after
+  // hydration to avoid SSR/CSR mismatch.
+  const [current, setCurrent] = useState<number>(0);
+  const [hydrated, setHydrated] = useState<boolean>(false);
+
+  useEffect(() => {
+    try {
+      const stored = Number(window.localStorage.getItem(STORAGE_KEY));
+      if (Number.isFinite(stored) && stored >= 0 && stored < total) {
+        setCurrent(stored);
+      }
+    } catch {}
+    setHydrated(true);
+  }, [total]);
 
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
@@ -58,12 +66,14 @@ export default function Deck() {
     return () => window.removeEventListener('resize', check);
   }, []);
 
-  // Persist current slide
+  // Persist current slide — only after hydration, so we don't overwrite
+  // the stored value with the initial SSR 0 before we've read it.
   useEffect(() => {
+    if (!hydrated) return;
     try {
       window.localStorage.setItem(STORAGE_KEY, String(current));
     } catch {}
-  }, [current]);
+  }, [current, hydrated]);
 
   const goTo = useCallback(
     (i: number) => setCurrent((_) => Math.max(0, Math.min(total - 1, i))),
