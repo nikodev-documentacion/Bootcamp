@@ -933,7 +933,7 @@
     box-shadow: 0 0 24px var(--react-glow);
   }
   .compose-btn .compose-react {
-    color: var(--react);
+    color: #fff;
     font-weight: 700;
   }
   .compose-btn.is-pressed {
@@ -942,7 +942,7 @@
     box-shadow: 0 0 24px var(--react-glow);
   }
   .compose-btn.is-pressed .compose-react {
-    color: #fff;
+    color: var(--react);
     text-shadow: 0 0 14px rgba(97,218,251,0.8);
   }
   .compose-btn .compose-word,
