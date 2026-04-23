@@ -1,10 +1,9 @@
-// Types + aggregated slide array. Per-slide content lives in ./content/slide-NN.ts
+// Slide metadata (transition + label). Content lives in the JSX slide components.
 export type SlideTx = 'fade' | 'slide-r' | 'slide-l' | 'zoom' | 'up';
 
 export interface SlideData {
   tx: SlideTx;
   label: string;
-  html: string;
 }
 
 import { slide01 } from './content/slide-01';

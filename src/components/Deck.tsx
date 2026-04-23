@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback, useMemo } from 'react';
 import { SLIDES_DATA } from '../slides/data';
+import { ChevronLeft, ChevronRight } from '../icons/components';
 import Slide01_Cover from '../slides/Slide01-Cover';
 import Slide02_WhatIsReact from '../slides/Slide02-WhatIsReact';
 import Slide03_Problem from '../slides/Slide03-Problem';
@@ -122,14 +123,10 @@ export default function Deck() {
 
       {/* Nav arrows (desktop only) */}
       <button className="nav-arrow left" onClick={prev} aria-label="Anterior">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+        <ChevronLeft />
       </button>
       <button className="nav-arrow right" onClick={next} aria-label="Siguiente">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M6 4L10 8L6 12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+        <ChevronRight />
       </button>
 
       {/* Counter */}

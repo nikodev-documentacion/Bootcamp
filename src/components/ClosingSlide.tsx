@@ -1,48 +1,78 @@
-import { useEffect, useRef } from 'react';
-import type { SlideData } from '../slides/data';
+import { useState } from 'react';
+import { NextJs, Remix, Qwik, AtomClosing } from '../icons/components';
 
-interface Props {
-  slide: SlideData;
+interface Framework {
+  name: string;
+  description: string;
+  icon: React.ReactNode;
 }
 
+const FRAMEWORKS: Framework[] = [
+  { name: 'Next.js', description: 'Vercel · SSR, RSC, App Router', icon: <NextJs /> },
+  { name: 'Remix', description: 'Shopify · web fundamentals', icon: <Remix /> },
+  { name: 'Qwik', description: 'Builder.io · resumability, 0 hydration', icon: <Qwik /> },
+  {
+    name: 'TanStack Start',
+    description: 'Tanner Linsley · full-stack + type-safe',
+    icon: <img src={`${import.meta.env.BASE_URL}frameworks/tanstack.png`} alt="TanStack" width={48} height={48} />,
+  },
+];
+
 /**
- * Closing slide (slide 17). Renders the raw HTML payload and wires up the
- * #compose-btn click handler via document-level delegation, so the event is
- * caught regardless of any overlapping element (e.g. the atom SVG above it).
+ * Closing slide (17). Pure JSX. The `.assemble` CSS animation is restarted on
+ * each click by bumping `playCount`, which is used as the wrapper's `key` to
+ * force a remount.
  */
-export default function ClosingSlide({ slide }: Props) {
-  const containerRef = useRef<HTMLDivElement | null>(null);
+export default function ClosingSlide() {
+  const [playCount, setPlayCount] = useState(0);
+  const pressed = playCount > 0 && playCount % 2 === 1;
 
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+  return (
+    <>
+      <div className="bg-grid"></div>
+      <div className="closing">
+        <div className="closing-top fade-in">
+          <div className="eyebrow">EL STACK MODERNO EMPIEZA AQUÍ</div>
+          <h2 className="heading" style={{ marginBottom: 8 }}>
+            Elige tu <span className="accent">meta-framework</span>.
+          </h2>
+          <p className="lead" style={{ fontSize: 'clamp(15px,1.3vw,18px)' }}>
+            React es la vista; estos son los frameworks que construyen productos reales encima.
+          </p>
+        </div>
 
-    const onDocClick = (e: MouseEvent) => {
-      const t = e.target as HTMLElement | null;
-      if (!t?.closest?.('#compose-btn')) return;
-      const btn = container.querySelector<HTMLButtonElement>('#compose-btn');
-      if (!btn) return;
-      const pressed = btn.classList.toggle('is-pressed');
-      btn.setAttribute('aria-pressed', String(pressed));
-      const atom = container.querySelector<HTMLElement>('#closing-atom');
-      if (!atom) return;
-      if (pressed) {
-        const parent = atom.parentNode;
-        if (!parent) return;
-        const clone = atom.cloneNode(true) as HTMLElement;
-        clone.classList.remove('assemble');
-        parent.replaceChild(clone, atom);
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => clone.classList.add('assemble'));
-        });
-      } else {
-        atom.classList.remove('assemble');
-      }
-    };
+        <div className="mf-row stagger">
+          {FRAMEWORKS.map(({ name, description, icon }) => (
+            <div key={name} className="mf-card">
+              <div className="mf-icon">{icon}</div>
+              <h3>{name}</h3>
+              <p>{description}</p>
+            </div>
+          ))}
+        </div>
 
-    document.addEventListener('click', onDocClick);
-    return () => document.removeEventListener('click', onDocClick);
-  }, [slide.html]);
-
-  return <div ref={containerRef} dangerouslySetInnerHTML={{ __html: slide.html }} />;
+        <div className="closing-final fade-in">
+          <div
+            key={playCount}
+            className={`closing-atom${pressed ? ' assemble' : ''}`}
+            id="closing-atom"
+            title="Click para reconstruir"
+          >
+            <AtomClosing />
+          </div>
+          <div className="closing-quote">
+            <button
+              id="compose-btn"
+              className={`compose-btn${pressed ? ' is-pressed' : ''}`}
+              type="button"
+              aria-pressed={pressed}
+              onClick={() => setPlayCount((c) => c + 1)}
+            >
+              click
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
