@@ -1,0 +1,26 @@
+import { forwardRef, memo } from 'react';
+import type { SVGProps, Ref } from 'react';
+
+const NextJs = (
+  { width = 48, height = 48, fill = '#000', ...props }: SVGProps<SVGSVGElement>,
+  ref: Ref<SVGSVGElement>
+) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={width}
+    height={height}
+    viewBox="0 0 128 128"
+    aria-label="Next.js"
+    ref={ref}
+    {...props}
+  >
+    <circle cx={64} cy={64} r={64} fill={fill} />
+    <path
+      d="M106.317 112.014 49.167 38.4H38.4v51.18h8.614V49.33l52.54 67.884a64.216 64.216 0 0 0 6.763-5.2Z"
+      fill="#fff"
+    />
+    <path d="M82.473 38.4h8.533v51.2h-8.533z" fill="#fff" />
+  </svg>
+);
+
+export default memo(forwardRef(NextJs));

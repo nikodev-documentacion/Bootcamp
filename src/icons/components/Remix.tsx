@@ -1,0 +1,28 @@
+import { forwardRef, memo } from 'react';
+import type { SVGProps, Ref } from 'react';
+
+const Remix = (
+  { width = 48, height = 48, fill = '#E8F2FF', ...props }: SVGProps<SVGSVGElement>,
+  ref: Ref<SVGSVGElement>
+) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={width}
+    height={height}
+    viewBox="0 0 800 800"
+    aria-label="Remix"
+    ref={ref}
+    {...props}
+  >
+    <path
+      fill={fill}
+      d="M587.947 527.768c4.307 55.31 4.307 81.236 4.307 109.53H465.731c0-6.16.111-11.795.224-17.514.347-17.783.708-36.323-2.204-73.765-3.844-54.791-27.395-66.96-70.639-66.96H195.41V388.776h204.807c54.623 0 81.934-16.602 81.934-60.61 0-38.696-27.311-62.149-81.934-62.149H195.41V165.504h227.252c122.592 0 183.49 57.92 183.49 150.55 0 69.265-43.243 114.512-101.58 122.07 49.294 9.87 78.145 37.928 83.375 89.645Z"
+    />
+    <path
+      fill={fill}
+      d="M194 637.298V562h137.14c22.9 0 27.86 16.973 27.86 27.09v48.208H194Z"
+    />
+  </svg>
+);
+
+export default memo(forwardRef(Remix));

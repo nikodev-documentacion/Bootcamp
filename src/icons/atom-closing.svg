@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-100 -100 200 200">
+  <g class="ca-ring ca-ring-1">
+    <ellipse class="atom-orbit" cx="0" cy="0" rx="75" ry="28"/>
+  </g>
+  <g class="ca-ring ca-ring-2">
+    <ellipse class="atom-orbit" cx="0" cy="0" rx="75" ry="28" transform="rotate(60)"/>
+  </g>
+  <g class="ca-ring ca-ring-3">
+    <ellipse class="atom-orbit" cx="0" cy="0" rx="75" ry="28" transform="rotate(-60)"/>
+  </g>
+  <circle class="ca-core" cx="0" cy="0" r="8" fill="#61dafb"/>
+  <circle class="ca-particle p1" cx="0" cy="0" r="3" fill="#61dafb"/>
+  <circle class="ca-particle p2" cx="0" cy="0" r="3" fill="#61dafb"/>
+  <circle class="ca-particle p3" cx="0" cy="0" r="3" fill="#61dafb"/>
+  <circle class="ca-particle p4" cx="0" cy="0" r="3" fill="#61dafb"/>
+</svg>
