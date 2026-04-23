@@ -68,7 +68,8 @@ export default function ClosingSlide() {
               aria-pressed={pressed}
               onClick={() => setPlayCount((c) => c + 1)}
             >
-              click
+              <span className="compose-word">compone</span>
+              <span className="compose-react">React</span>
             </button>
           </div>
         </div>
